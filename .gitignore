@@ -1,0 +1,15 @@
+*.swo
+*.iml
+/.classpath
+/.project
+/.settings
+*.aux
+*.bbl
+*.gz
+*.log
+*.blg
+*.pdf
+*.jpg
+*.log
+*.gz
+*.toc
