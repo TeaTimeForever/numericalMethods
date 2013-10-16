@@ -5,9 +5,7 @@
 \usepackage{natbib}
 \usepackage{upquote}
 \usepackage{datetime}
-\newcommand{\mR}{\mathbf{R}}
-\newcommand{\mU}{\mathbf{U}}
-\newcommand{\mS}{\mathbf{S}}
+\usepackage{multicol}
 
 \title{Численные методы: Лабораторная работа №1}
 \author{Группа 4001BV: Карина Пилюшонока \and Александр Степанов \and Борис
@@ -27,86 +25,232 @@
 уравнений методом исключения Гаусса с ведущим элементом.
 Для проверки алгоритма использовать следующие системы:
 
-\begin{equation}\label{1st}
-\left\{ \begin{array}{ll}
+\begin{displaymath}
+  \left\{ \begin{array}{ll}
   x_{1} - 2x_{2} + x_{3} = 2\\
   2x_{1} - 5x_{2} - x_{3} = -1\\
   -7x_{1} + x_{3} = -2\\
 \end{array} \right.
-\end{equation}
-
-\begin{equation}\label{2st}
-\left\{ \begin{array}{ll}
+\end{displaymath}
+\rule[1mm]{10cm}{0.1mm}
+\begin{displaymath}
+  \left\{ \begin{array}{ll}
   5x_{1} - 5x_{2} - 3x_{3} + 4x_{4} = -11\\
   x_{1} - 4x_{2} + 6x_{3} - 4x_{4} = -10\\
   -2x_{1} - 5x_{2} + 4x_{3} - 5x_{4} = -12\\
   -3x_{1} - 3x_{2} + 5x_{3} - 5x_{4} = 8\\
 \end{array} \right.
-\end{equation}
-
-\begin{equation}\label{3d}
-\left\{ \begin{array}{ll}
+\end{displaymath}
+\rule[1mm]{10cm}{0.1mm}
+\begin{displaymath}
+  \left\{ \begin{array}{ll}
   0.78x_{1} + 0.563x_{2} = 0.217\\
   0.913x_{1} + 0.659x_{2} = 0.254\\
 \end{array} \right.
-\end{equation}
+\end{displaymath}
 
 \subsection{Метод прогонки}
 Написать программную реализацию алгоритма для решения системы линейных
 уравнений методом прогонки для трехдиагональных матриц.
-Для проверки алгоритма в списке линейных уравнений указанных в методическом
-пособии для данной лабораторной работы не оказалось трехдиагональных матриц,
+Также, необходимо сравнить метод прогонки и метод исключения Гаусса с выбором
+ведущего элемента.
+Для проверки алгоритма в списке линейных уравнений указанных
+в методическом пособии для данной лабораторной работы не оказалось трехдиагональных матриц,
 поэтому мы самостоятельно подготовили тестовые варианты для данной
 части задания.
-
-\begin{equation}\label{4th}
-\left\{ \begin{array}{ll}
+\begin{multicols}{2}
+\begin{displaymath}
+  \left\{ \begin{array}{ll}
   x_{1} + 4x_{2} = 17\\
   3x_{1} + 2x_{2} + 7x_{3} = 35\\
   x_{2} + 3x_{3} = 9\\
 \end{array} \right.
-\end{equation}
+\end{displaymath}
 
-ответ:
-
-\begin{equation}\label{4th}
+\begin{displaymath}
 \left\{ \begin{array}{ll}
   x_{1} = 5\\
   x_{2} = 3\\
   x_{3} = 2\\
 \end{array} \right.
-\end{equation}
-
-\begin{equation}\label{5th}
-\left\{ \begin{array}{ll}
-  0.17x_{1} + 1.2x_{2} = 0.5052\\
-  0.56x_{1} - 0.7x_{2} + x_{3} = -1.2364\\
-  -0.3x_{2} + 1.1x_{3} + 0.67x_{4} = 2.777\\
-  1.9x_{3} + 1.3x_{4} = 5.043\\
+\end{displaymath}
+\end{multicols}
+\rule[1mm]{10cm}{0.1mm}
+\begin{multicols}{2}
+\begin{displaymath}
+  \left\{ \begin{array}{ll}
+  0.2x_{1} + 1.2x_{2} = 3.42\\
+  5.6x_{1} - 0.7x_{2} + x_{3} = 10.62\\
+  -0.5x_{2} + 1.1x_{3} + 0.07x_{4} = -0.636\\
+  1.9x_{3} + 1.3x_{4} = 4.92\\
 \end{array} \right.
-\end{equation}
+\end{displaymath}
 
-ответ:
-
-\begin{equation}\label{4th}
+\begin{displaymath}
 \left\{ \begin{array}{ll}
-  x_{1} = 1.56\\
-  x_{2} = 0.2\\
-  x_{3} = -1.97\\
-  x_{4} = 1\\
+  x_{1} = 1.5\\
+  x_{2} = 2.6\\
+  x_{3} = 0.4\\
+  x_{4} = 3.2\\
 \end{array} \right.
-\end{equation}
-
-\begin{equation}\label{6th}
-\left\{ \begin{array}{ll}
-x_{1} - 2x_{2} + x_{3} = 2\\
-2x_{1} - 5x_{2} - x_{3} = -1\\
--7x_{1} + x_{3} = -2\\
-\end{array} \right.
-\end{equation}
+\end{displaymath}
+\end{multicols}
 
 \subsection{Определение числа обусловленности матрицы}
+Написать программную реализацию алгоритма, для вычисления значения числа
+обусловленности для матриц. В промежуточных вычислениях используется Евклидовая
+норма матрицы. Для проверки алгоритма использовать следующие системы:
 
-Plain text.
+\begin{displaymath}
+  \left\{ \begin{array}{ll}
+  2x_{1} - x_{2} - x_{3}= 5\\
+  x_{1} + 3x_{2} - 2x_{3} = 7\\
+  x_{1} + 2x_{2} + 3x_{3} = 10\\
+\end{array} \right.
+\end{displaymath}
+\rule[1mm]{10cm}{0.1mm}
+\begin{displaymath}
+  \left\{ \begin{array}{ll}
+  0.78x_{1} + 0.563x_{2} = 0.217\\
+  0.913x_{1} + 0.659x_{2} = 0.254\\
+\end{array} \right.
+\end{displaymath}
+Пояснить полученные результаты вычислений.
 
+\section{Ход выполнения заданий}
+\subsection{Метод исключения Гаусса с ведущим элементом}
+Полученные результаты:
+\begin{multicols}{2}
+\begin{displaymath}
+  \left\{ \begin{array}{ll}
+  x_{1} - 2x_{2} + x_{3} = 2\\
+  2x_{1} - 5x_{2} - x_{3} = -1\\
+  -7x_{1} + x_{3} = -2\\
+\end{array} \right.
+\end{displaymath}
+
+\begin{displaymath}
+\left\{ \begin{array}{ll}
+  x_{1} = 0.52\\
+  x_{2} = 0.08\\
+  x_{3} = 1.64\\
+\end{array} \right.
+\end{displaymath}
+\end{multicols}
+\rule[1mm]{10cm}{0.1mm}
+\begin{multicols}{2}
+\begin{displaymath}
+  \left\{ \begin{array}{ll}
+  5x_{1} - 5x_{2} - 3x_{3} + 4x_{4} = -11\\
+  x_{1} - 4x_{2} + 6x_{3} - 4x_{4} = -10\\
+  -2x_{1} - 5x_{2} + 4x_{3} - 5x_{4} = -12\\
+  -3x_{1} - 3x_{2} + 5x_{3} - 5x_{4} = 8\\
+\end{array} \right.
+\end{displaymath}
+
+\begin{displaymath}
+\left\{ \begin{array}{ll}
+  x_{1} = -12.8235\\
+  x_{2} = -2.2941\\
+  x_{3} = 11.7647\\
+  x_{4} = 19.2353\\
+\end{array} \right.
+\end{displaymath}
+\end{multicols}
+\rule[1mm]{10cm}{0.1mm}
+\begin{multicols}{2}
+\begin{displaymath}
+  \left\{ \begin{array}{ll}
+  0.78x_{1} + 0.563x_{2} = 0.217\\
+  0.913x_{1} + 0.659x_{2} = 0.254\\
+\end{array} \right.
+\end{displaymath}
+
+\begin{displaymath}
+\left\{ \begin{array}{ll}
+  x_{1} = 1\\
+  x_{2} = -1\\
+\end{array} \right.
+\end{displaymath}
+\end{multicols}
+\subsection{Метод прогонки}
+Полученные результаты:
+\begin{multicols}{2}
+\begin{displaymath}
+  \left\{ \begin{array}{ll}
+  x_{1} + 4x_{2} = 17\\
+  3x_{1} + 2x_{2} + 7x_{3} = 35\\
+  x_{2} + 3x_{3} = 9\\
+\end{array} \right.
+\end{displaymath}
+
+\begin{displaymath}
+\left\{ \begin{array}{ll}
+  x_{1} = 5\\
+  x_{2} = 3\\
+  x_{3} = 2\\
+\end{array} \right.
+\end{displaymath}
+\end{multicols}
+\rule[1mm]{10cm}{0.1mm}
+\begin{multicols}{2}
+\begin{displaymath}
+  \left\{ \begin{array}{ll}
+  0.2x_{1} + 1.2x_{2} = 3.42\\
+  5.6x_{1} - 0.7x_{2} + x_{3} = 10.62\\
+  -0.5x_{2} + 1.1x_{3} + 0.07x_{4} = -0.636\\
+  1.9x_{3} + 1.3x_{4} = 4.92\\
+\end{array} \right.
+\end{displaymath}
+
+\begin{displaymath}
+\left\{ \begin{array}{ll}
+  x_{1} = 1.5\\
+  x_{2} = 2.6\\
+  x_{3} = 0.4\\
+  x_{4} = 3.2\\
+\end{array} \right.
+\end{displaymath}
+\end{multicols}
+
+\subsection{Определение числа обусловленности матрицы}
+Полученные результаты:
+\begin{multicols}{2}
+\begin{displaymath}
+  \left\{ \begin{array}{ll}
+  2x_{1} - x_{2} - x_{3}= 5\\
+  x_{1} + 3x_{2} - 2x_{3} = 7\\
+  x_{1} + 2x_{2} + 3x_{3} = 10\\
+\end{array} \right.
+\end{displaymath}
+
+\begin{displaymath}
+  cond = 3.4236
+\end{displaymath}
+\end{multicols}
+\rule[1mm]{10cm}{0.1mm}
+\begin{multicols}{2}
+\begin{displaymath}
+  \left\{ \begin{array}{ll}
+  0.78x_{1} + 0.563x_{2} = 0.217\\
+  0.913x_{1} + 0.659x_{2} = 0.254\\
+\end{array} \right.
+\end{displaymath}
+
+\begin{displaymath}
+  cond = 2.1932e+6
+\end{displaymath}
+\end{multicols}
+Число обусловленности второй матрицы многократно превышает число первой
+, поскольку она содержить в себе маленькие дробные числа.
+Это означает, что при работе с матрицами подобного типа, стоит уделить
+большое внимание алгоритмам, которые будут ими оперировать.
+
+ \section{Сравнительный анализ методов прогонки и исключения Гаусса с
+выборов ведущего элемента}
+
+\section{Программная реализация}
+\subsection{Метод исключения Гаусса с ведущим элементом}
+\subsection{Метод прогонки}
+\subsection{Определение числа обусловленности матрицы}
 \end{document}

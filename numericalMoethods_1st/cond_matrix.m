@@ -13,7 +13,12 @@ classdef cond_matrix
             res = nthroot(absMatrixSum, power);
             %res = svds(A, 1); like a matlab
         end
+        
+        function res = testStart()
+            %res = cond_matrix.condValue([1 2 4; 5 1 2; 9 6 4]);
+            %res = cond_matrix.condValue([2 -1 -1; 1 3 -2; 1 2 3]);
+            res = cond_matrix.condValue([0.78 0.563; 0.913 0.659]);
+        end
     end
-    
-    %cond_matrix.condValue([1 2 4; 5 1 2; 9 2 4])
 end
+

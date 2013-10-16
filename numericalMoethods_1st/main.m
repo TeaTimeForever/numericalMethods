@@ -49,7 +49,6 @@ classdef main
 
                 for i = main_row +1 : dimentions(1)
                     AXB(i, :) = main.zeroing_row(AXB(main_row, :), AXB(i, :), j);  %%%%
-                    disp(AXB);
                 end
             end
             res = main.reverse_gauss(AXB);
@@ -57,7 +56,10 @@ classdef main
 
         function res = testStart()
             %res = main.gauss([2 1 -1; -3 -1 2; -2 1 2], [8; -11; -3]); % 3 2 -1
-            res = gauss([2 -1 0; -1 -1 4; 1 2 3], [4; -1; 10]); % 3 2 1 
+            %res = main.gauss([2 -1 0; -1 -1 4; 1 2 3], [4; -1; 10]); % 3 2 1
+            %res = main.gauss([1 -2 1; 2 -5 -1; -7 0 1], [2; -1; -2]);
+            %res = main.gauss([5 -5 -3 4; 1 -4 6 -4; -2 -5 4 -5; -3 -3 5 -5], [-11; -10; -12; 8]); % 3 2 1 
+            %res = main.gauss([0.78 0.563; 0.913 0.659], [0.217; 0.254])
         end
     end
 end
