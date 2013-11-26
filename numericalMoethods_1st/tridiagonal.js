@@ -11,22 +11,19 @@ function getAuxiliaryMatrix(a, b){
 
   var partA = b[rowsInA - 1] - a[rowsInA - 1][rowsInA - 2] * auxBetaAlpha[rowsInA-2][0]
   var partB = a[rowsInA-1][rowsInA-1] - a[rowsInA-1][rowsInA-2] * auxBetaAlpha[rowsInA-2][1]
-
   var lastBeta = partA/partB
   var lastAlpha = 0
 
-  console.log(lastBeta)
   auxBetaAlpha.push([lastBeta, lastAlpha])
 
   return auxBetaAlpha
 }
 
-a = [[1, 4, 0], [3, 2, 7], [0, 1, 3]]
-b = [[17], [35], [9]]
+//a = [[1, 4, 0], [3, 2, 7], [0, 1, 3]]
+//b = [[17], [35], [9]]
 
 function solveTridiagonal(a, b){
   var auxM = getAuxiliaryMatrix(a, b)
-  console.log(auxM)
   var rowsInAuxM = auxM.length
   var x = []
   x[rowsInAuxM - 1] = auxM[rowsInAuxM-1][0]
@@ -36,5 +33,6 @@ function solveTridiagonal(a, b){
   return x
 }
 
-//console.log(getAuxiliaryMatrix(a, b))
-console.log(solveTridiagonal(a, b))
+//console.log(solveTridiagonal(a, b))
+
+module.exports = solveTridiagonal
