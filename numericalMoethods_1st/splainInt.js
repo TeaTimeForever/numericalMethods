@@ -9,14 +9,42 @@ var abcd = []
 
 var h = fillDeltaValues()
 var matrixes = fillTridiagonalMatrix()
+fillCValues()
+fillAValues()
+fillDValues()
+fillBValues()
 
-var c = solveTridiagonal(matrixes[0], matrixes[1])
-for(var i = 0; i < c.length; i++) {
-  console.log(c[i])
-  abcd.push([, , c[i], ])
-}
+
 console.log(abcd)
 
+
+
+function fillAValues(){
+  for(var i = 0; i < xy.length; i++){
+    abcd[i][0] = xy[i][1]
+  }
+}
+
+function fillBValues(){
+  for(var i = 1; i < xy.length; i++){
+    abcd[i][1] = (h[i-1][0] * abcd[i][2])/2 - (Math.pow(h[i-1][0], 2)*abcd[i][3])/6 + h[i-1][1]/h[i-1][0]
+  }
+}
+
+function fillCValues(){
+  var c = solveTridiagonal(matrixes[0], matrixes[1])
+  abcd.push([, , 0, ])
+  for(var i = 0; i < c.length; i++) {
+    abcd.push([, , c[i], ])
+  }
+  abcd.push([, , 0, ])
+}
+
+function fillDValues(){
+  for(var i = 1; i < xy.length; i++){
+    abcd[i][3] = (abcd[i][2] - abcd[i-1][2]) / h[i-1][0] 
+  }
+}
 function fillDeltaValues(){
   var h = []
   for(var i=1; i < xy.length; i++){
