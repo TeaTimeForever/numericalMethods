@@ -13,12 +13,22 @@ fillCValues()
 fillAValues()
 fillDValues()
 fillBValues()
+//console.log(abcd)
 
+var x = 7.2
+var sIndex = defineSIndex(x)
+console.log(interpolate(sIndex, x))
 
-console.log(abcd)
+function interpolate(sI, x){
+  var delta = x - xy[sI-1][0]
+  return abcd[sI][0] + abcd[sI][1] * (delta) + abcd[sI][2] * (Math.pow(delta, 2)) / 2 + abcd[sI][3] * (Math.pow(delta, 3))/6
+}
 
-
-
+function defineSIndex(x){
+  for(var i=1; i < xy.length; i++){
+    if(x < xy[i][0]) return i
+  } 
+}
 function fillAValues(){
   for(var i = 0; i < xy.length; i++){
     abcd[i][0] = xy[i][1]
