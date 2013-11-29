@@ -11,4 +11,17 @@ function fD(x) {
 	return x*(2*Math.sin(x) + x*Math.cos(x));
 }
 
-bisection(a, b, e);
+
+console.log(bisection(a, b, e))
+
+function bisection(a, b, e) {
+	do {
+		var x = (a+b)/2
+		if(f(a) * f(x) <= 0) {
+			b = x
+		} else {
+			a = x
+		}
+	} while (Math.abs(b - a) > e)
+	return x
+}
