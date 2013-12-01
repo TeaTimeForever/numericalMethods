@@ -21,13 +21,11 @@
 \newpage
 \tableofcontents
 \newpage
-\section{Введение}
-\subsection{Расчет индивидуальных коэффициентов для заданий}
+\section{Расчет индивидуальных коэффициентов для заданий}
 Номер группы: 4001BV \\
 Номер в журнале: 16 \\
 Год посутпления: 2010 \\
 Форма обучения: вечерняя
-
 
 \begin{displaymath} 
   N_{g} = 3 * (4 + 2) + 0 - 1 = 17
@@ -152,7 +150,28 @@ yравнение 3:
 \end{displaymath}
 
 \section{Методы приближения функции. Интерполяция и аппроксимация}
-\subsection{Вычисление начальных значений}
+
+\subsection{Подготовка: расчет узлов}
+\begin{table}[!h]
+  \begin{tabular}{|l|l|l|l|l|}
+  \hline
+  \bfseries x & -1 & $N_{g}$   & 6 & 10\\
+  \hline
+  \bfseries y &  1 & $N_{s}-5$ & 8 & -2\\
+  \hline
+  \end{tabular}
+\end{table}
+При подстановке $N_{g}$ и $N_{s}$ получим следующий набор узлов:
+\begin{table}[!h]
+  \begin{tabular}{|l|l|l|l|l|}
+  \hline
+  \bfseries x & -1 & $17$ & 6 & 10\\
+  \hline
+  \bfseries y &  1 & $11$ & 8 & -2\\
+  \hline
+  \end{tabular}
+\end{table}
+ 
 \subsection{Полином Лагранжа}
 \subsection{Полином Ньютона}
 \subsection{Метод наименьших квадратов}
@@ -165,6 +184,7 @@ yравнение 3:
 \subsection{Квадратура Гаусса}
 
 \section{Решение нелинейного уравнения}
+\subsection{}
 \subsection{Метод бисекции}
 \subsection{Метод хорд}
 \subsection{Метод Ньютона}
