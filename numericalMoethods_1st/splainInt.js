@@ -5,22 +5,46 @@ var xy = [
   [6.6, 2.4],
   [9.9, 3.4]]
 
+var p = [
+  {x:0,y:2.1},
+  {x:3.3,y:5.9},
+  {x:6.6,y:2.4},
+  {x:9.9,y:3.4}
+]
+
+repl=require("repl");
+
 var abcd = []
 
 var h = fillDeltaValues()
 var matrixes = fillTridiagonalMatrix()
+
+console.log('AX')
+console.log(matrixes[0])
+console.log('B')
+console.log(matrixes[1])
+
 fillCValues()
 fillAValues()
 fillDValues()
 fillBValues()
-//console.log(abcd)
+console.log(abcd)
 
 var x = 7.2
 var sIndex = defineSIndex(x)
 console.log(interpolate(sIndex, x))
 
+repl.start({
+	useGlobal:true,
+	eval:function(x,ctx,fn,next){
+		x=eval(x)
+		var y=interpolate(defineSIndex(x),x)
+		next(null,y);
+	}
+})
+
 function interpolate(sI, x){
-  var delta = x - xy[sI-1][0]
+  var delta = x - xy[sI][0]
   return abcd[sI][0] + abcd[sI][1] * (delta) + abcd[sI][2] * (Math.pow(delta, 2)) / 2 + abcd[sI][3] * (Math.pow(delta, 3))/6
 }
 
@@ -28,6 +52,7 @@ function defineSIndex(x){
   for(var i=1; i < xy.length; i++){
     if(x < xy[i][0]) return i
   } 
+  return i-1;
 }
 function fillAValues(){
   for(var i = 0; i < xy.length; i++){
@@ -68,7 +93,7 @@ function fillTridiagonalMatrix(){
   var matrixA = []
   var matrixB = []
 
-  for(var i = 0; i < h.length-1; i++){
+  for(var i = 1; i < h.length-1; i++){
     var equation = []
     for(var j = 1; j < i; j++){
       // добавляем нули с правой стороны диагонали
@@ -92,5 +117,6 @@ function fillTridiagonalMatrix(){
     }
     matrixA.push(equation)
   }
+  //return [m,bb]
   return [matrixA, matrixB]
 }
