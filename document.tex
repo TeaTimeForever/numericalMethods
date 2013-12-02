@@ -7,6 +7,7 @@
 \usepackage{datetime}
 \usepackage{multicol}
 \usepackage{listings}
+\usepackage{graphicx}
 
 \setlength{\voffset}{-2cm}
 \setlength{\textheight}{700pt}
@@ -184,15 +185,139 @@ yравнение 3:
 \subsection{Квадратура Гаусса}
 
 \section{Решение нелинейного уравнения}
-\subsection{}
+\subsection{Подготовка: создание уравнения, вспомогательные элементы}
+
+\begin{displaymath}
+  \begin{array}{ccc}
+    f(x) = x / sin^2(3x)  \\
+    f'(x) = (1 - 6x cos(3 x) / sin(3 x)) 1/sin^2(3 x)\\
+    f''(x) = 6/sin^4(3x) * (6x - sin(6x) + 3x * cos(6x))
+  \end{array}
+\end{displaymath}
+
+\begin{displaymath}
+  \begin{array}{ccc}
+    f(x) = N_{g}  \\
+    x / sin^2(3x) = 17 \\
+    x / sin^2(3x) - 17 = 0 \\
+  \end{array}
+\end{displaymath}
+
+Точность: $\varepsilon = 0.0001$
+
+Интервал для поиска корней: [0.1; 1]
+
 \subsection{Метод бисекции}
+
+Итерация: 1
+\begin{displaymath}
+  x: 0.55, ab = [0.1, 1];
+\end{displaymath}
+итерация: 2
+\begin{displaymath}
+  x: 0.775, ab = [0.55, 1];
+\end{displaymath}
+итерация: 3
+\begin{displaymath}
+  x: 0.8875, ab = [0.775, 1];
+\end{displaymath}
+итерация: 4
+\begin{displaymath}
+  x: 0.94375, ab = [0.8875, 1];
+\end{displaymath}
+итерация: 5
+\begin{displaymath}
+  x: 0.971875, ab = [0.94375, 1];
+\end{displaymath}
+итерация: 6
+\begin{displaymath}
+  x: 0.9578125, ab = [0.94375, 0.971875].
+\end{displaymath}
+
+Результат: $x = 0.966876220703125$, за 14 итераций.
+
 \subsection{Метод хорд}
+Условие сходимости метода: 
+\begin{displaymath}
+  \begin{array}{ccc}
+    f(1) = x / sin^2(3x) = 33.213768360408736 \\
+    f''(1) = 6/sin^4(3x) * (6x - sin(6x) + 3x * cos(6x)) = 138576.26831776567
+  \end{array}
+\end{displaymath}
+- знак не меняется, значит метод применим.\\
+Итерация: 1
+\begin{displaymath} 
+  x: 0.3908054983496253, ab = [0.1, 1]
+\end{displaymath}
+итерация: 2
+\begin{displaymath}
+  x: 0.5933240899277314, ab = [0.3908054983496253, 1]
+\end{displaymath}
+итерация: 3
+\begin{displaymath}
+  x: 0.7276420688960742, ab = [0.5933240899277314, 1]
+\end{displaymath}
+итерация: 4
+\begin{displaymath}
+  x: 0.8158659960100441, ab = [0.7276420688960742, 1]
+\end{displaymath}
+итерация: 5
+\begin{displaymath}
+  x: 0.8731678144064535, ab = [0.8158659960100441, 1]
+\end{displaymath}
+итерация: 6
+\begin{displaymath}
+  x: 0.9098002888447452, ab = [0.8731678144064535, 1]
+\end{displaymath}
+
+Результат: $x = 0.9668512818566148$, за 18 шагов.
+
 \subsection{Метод Ньютона}
+\begin{displaymath}
+  x_{0}: 0.55;
+\end{displaymath}
+Итерация: 1
+\begin{displaymath}
+  x: 13.50135782145894  delta: 12.95135782145894;
+\end{displaymath}
+итерация: 2
+\begin{displaymath}
+  x: 13.451261598353025  delta: 0.05009622310591588;
+\end{displaymath}
+итерация: 3
+\begin{displaymath}
+  x: 13.387853446812523  delta: 0.06340815154050183;
+\end{displaymath}
+итерация: 4
+\begin{displaymath}
+  x: 13.321324383604663  delta: 0.06652906320785945;
+\end{displaymath}
+итерация: 5
+\begin{displaymath}
+  x: 13.272783216385665  delta: 0.04854116721899793;
+\end{displaymath}
+итерация: 6
+\begin{displaymath}
+  x: 13.254786613462766  delta: 0.017996602922899285.
+\end{displaymath}
+
+Результат: $x = 13.252873093705627$, за 8 итераций.
+\subsubsection{Метод Ньютона: пояснение результата}
+  Метод Ньютона, при начальном $x_{0} = 0.55$ не сходится (см.
+  Рис.\ref{equ_newton_img}).
+  \begin{figure}[b]
+    \includegraphics[width=13cm]{equations_newton.png}
+    \caption{Первые шаги поиска корня методом Ньютона для функции $x/sin^2(3x)
+    - 17$}
+    \label{equ_newton_img}
+  \end{figure}
+
 \subsection{Метод простых итераций}
 
 \section{Решение линейного дифференциального уравнения 2-го порядка}
 \subsection{Метод Рунге-Кутта}
 
 \section{Разложение периодической функции в ряд Фурье}
+
 
 \end{document}

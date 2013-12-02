@@ -3,17 +3,19 @@ var a = 0.1;
 var b = 1;
 var e = 0.0001;
 
-console.log(bisection(a, b, e))
+console.log(chord(a, b, e))
 
 function f(x) {
-	// return Math.pow(x, 2)*Math.sin(x) -17;
-	return x / (Math.pow(Math.sin(3*x), 2)) - 17// my homework
+	return x / (Math.pow(Math.sin(3*x), 2)) - 17
 }
 
-function bisection(a, b, e) {
+function chord(a, b, e) {
 	var i = 1
+	var old = b
+	var x = -6
 	do {
-		var x = (a+b)/2
+		old = x
+		x = b - (b-a)/(f(b) - f(a))*f(b)
 		console.log('it: ' + i)
 		console.log('x: ' + x + ', ab = [' + a + ', ' + b + ']')
 		if(f(a) * f(x) <= 0) {
@@ -21,7 +23,8 @@ function bisection(a, b, e) {
 		} else {
 			a = x
 		}
+		
 		i++
-	} while (Math.abs(b - a) > e)
+	} while (Math.abs(x - old) > e)
 	return x
 }
