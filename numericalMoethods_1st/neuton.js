@@ -1,6 +1,7 @@
 function neuton(a, b, e) {
 	var i = 0;
-	var x = (a+b)/2 
+	var x = (a+b)/2
+//	var x = 0.91
 	var xNew
 	console.log('x: ' + x )
 	do {
@@ -26,5 +27,7 @@ function fD(x) {
 }
 var a = 0.1;
 var b = 1;
-var e = 0.0001;
+var e = 0.0001
+//var e = 0.0000001
+//var e = 0.0000000001
 neuton(a, b, e);

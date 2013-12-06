@@ -1,8 +1,9 @@
 
 var a = 0.1;
 var b = 1;
-var e = 0.0001;
-
+//var e = 0.0001
+//var e = 0.0000001
+var e = 0.0000000001
 console.log(bisection(a, b, e))
 
 function f(x) {

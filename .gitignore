@@ -13,3 +13,5 @@
 *.log
 *.gz
 *.toc
+/bin
+/tmp
