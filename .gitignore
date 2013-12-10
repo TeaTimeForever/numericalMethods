@@ -2,6 +2,7 @@
 *.swp
 *.iml
 /.classpath
+/.buildpath
 /.project
 /.settings
 *.aux

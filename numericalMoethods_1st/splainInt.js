@@ -7,7 +7,7 @@ var xy = [
 
 var p = [
   {x:0,y:2.1},
-  {x:3.3,y:5.9},
+  {x:3.3,y:5.9},	
   {x:6.6,y:2.4},
   {x:9.9,y:3.4}
 ]
@@ -28,20 +28,12 @@ fillCValues()
 fillAValues()
 fillDValues()
 fillBValues()
+console.log("abcd")
 console.log(abcd)
 
 var x = 7.2
 var sIndex = defineSIndex(x)
 console.log(interpolate(sIndex, x))
-
-repl.start({
-	useGlobal:true,
-	eval:function(x,ctx,fn,next){
-		x=eval(x)
-		var y=interpolate(defineSIndex(x),x)
-		next(null,y);
-	}
-})
 
 function interpolate(sI, x){
   var delta = x - xy[sI][0]
@@ -105,7 +97,10 @@ function fillTridiagonalMatrix(){
     
     if(i != h.length-2) {  // последнее уравнение должно содержать только 1й и 2й элементы
       equation.push(h[i+1][0])
-      matrixB.push([6 * (h[i+1][1] / h[i+1][0] - h[i][1] /h[i][0])])
+      var b1 = (h[i+1][1] / h[i+1][0])
+      var b2 = (h[i][1] /h[i][0])
+      var b = 6 * ( b1 - b2 )
+      matrixB.push([b])
     } else {
       //последнее значение матрицы B вычисляется иначе, чтобы не получить неопределенность вида 0/0 - см. h
       matrixB.push([-6*h[i][1]/h[i][0]])
@@ -117,6 +112,5 @@ function fillTridiagonalMatrix(){
     }
     matrixA.push(equation)
   }
-  //return [m,bb]
   return [matrixA, matrixB]
 }
