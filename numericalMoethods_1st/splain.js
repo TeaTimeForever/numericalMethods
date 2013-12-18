@@ -53,13 +53,22 @@ function fillMatrixes(){
 	p.pop()
 	return {A: aM, B: bM}
 }
-
+//
+//function fillA(){
+//  for(var i=0; i < n; i++){
+//    abcd[i] = []
+//    abcd[i][0] = p[i].y
+//  }
+//}
 function fillA(){
-  for(var i=0; i < n; i++){
-    abcd[i] = []
+  abcd[0] = []	
+  abcd[0][0] = 0
+  for(var i = 1; i < p.length; i++){
+	abcd[i] = []
     abcd[i][0] = p[i].y
   }
 }
+
 function fillB(){
   for(var i = 0; i < n-1; i++){
     abcd[i][1] = (p[i+1].y - p[i].y - abcd[i][2] * h[i] * h[i] - ((abcd[i+1][2] - abcd[i][2]) / 3 )* h[i] * h[i]) / h[i]; 

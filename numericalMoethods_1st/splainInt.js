@@ -47,7 +47,8 @@ function defineSIndex(x){
   return i-1;
 }
 function fillAValues(){
-  for(var i = 0; i < xy.length; i++){
+  abcd[0][0] = 0
+  for(var i = 1; i < xy.length; i++){
     abcd[i][0] = xy[i][1]
   }
 }
