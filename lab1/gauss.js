@@ -96,6 +96,9 @@ function reverse_gauss(array_axb) {
 	}
 	return array_x;
 }
-var test_matrix_AX = [ [ 1, 2, 4 ], [ 4, 7, 8 ], [ 3, 8, 9 ] ];
-var test_matrix_B = [ [ 15 ], [ 41 ], [ 45 ] ];
+//var test_matrix_AX = [ [ 1, 2, 4 ], [ 4, 7, 8 ], [ 3, 8, 9 ] ];
+//var test_matrix_B = [ [ 15 ], [ 41 ], [ 45 ] ];
+
+var test_matrix_AX = [ [ 4, 32, 426, 6128, 94818 ], [ 32, 426, 6128, 94818, 1527632 ], [ 426, 6128, 94818, 1527632, 25184226 ], [6128, 94818, 1527632, 25184226, 420618608], [94818, 1527632, 25184226, 420618608, 7077437058] ];
+var test_matrix_B = [ [ 18 ], [ 214 ], [ 3268 ], [53770], [909100] ];
 display_array(gauss(test_matrix_AX, test_matrix_B))

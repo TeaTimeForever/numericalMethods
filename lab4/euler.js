@@ -3,10 +3,6 @@ function f(x) {
 	return 0.25 * x - 0.05 * Math.pow(x,2)
 }
 
-function df(x) {
-	return 0.25 * Math.pow(x, 2) - 0.05 * Math.pow(x,3)
-}
-
 //шаг
 var h = 0.1
 

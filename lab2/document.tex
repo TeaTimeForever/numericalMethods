@@ -1,0 +1,150 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{amsfonts}
+\usepackage{natbib}
+\usepackage{upquote}
+\usepackage{datetime}
+\usepackage{multicol}
+\usepackage{listings}
+
+\setlength{\voffset}{-2cm}
+\setlength{\textheight}{700pt}
+
+\title{Численные методы: Лабораторная работа №1}
+\author{Группа 4001BV: Карина Пилюшонока \and Александр Степанов \and Борис
+Кувшинников}
+\date \today
+
+\begin{document}
+
+\maketitle
+\newpage
+\tableofcontents
+\newpage
+\section{Описание}
+В данной лабораторной работе необходимо продемонстрировать работу алгоритма
+интерполяции по принципy кубического сплайна. Также необходмо предоставить
+график интерполирования на заданном промежутке.
+
+В качестве исходных данных использовать следующий набор узлов:
+\begin{table}[!h]
+  \begin{tabular}{|l|l|l|l|l|l|l|l|}
+  \hline
+  \bfseries x & -3.2 & -2.1 & 0.4 & 0.7 & 2 & 2.5 & 2.777\\
+  \hline
+  \bfseries y &  10  & -2   & 0   & -7  & 7 & 0   & 0\\
+  \hline
+  \end{tabular}
+\end{table}
+\section{Ход работы}
+Для вышеуказанных узлов в ходе работы алгоритма были получены следующие
+коэффициенты для сплайнов:
+
+\begin{table}[!h]
+  \begin{tabular}{|l|l|l|l|l|}
+  \hline
+  \bfseries S & a & b & c & d \\
+  \hline
+  \bfseries 1 & 10& -3797.637713813412 & 0 & 3786.728622904321\\
+  \bfseries 2 & -2& 7562.548154899551  & 10327.441698829965   & -33380.352401974465\\
+  \bfseries 3 & 0 & 4596.569100537964  & 4298.791921190518   & 3786.728622904321\\
+  \bfseries 4 & -7& -10955.52020307877 & 13258.938028365801 & -6270.33000302754\\
+  \bfseries 5 & 7 & 320.23740655348223 & -1211.0542863131398 & 271.28973660308765\\
+  \bfseries 6 & 0 & -76.94766995039464 & 416.68413330538596 & -38.47383497519732\\
+  \hline
+  \end{tabular}
+\end{table}
+    
+\section{Выводы}
+
+\section{Исходный код}
+\begin{lstlisting}
+var solveTridiagonal = require('./tridiagonal')
+var p = [
+  {x: 0, y: 2},
+  {x: 1, y: 5},
+  {x: 2, y: 3},
+  {x: 3, y: 4}
+]
+
+var splines = []
+
+//fill a
+for (var i=0; i < p.length-1; i++) {
+  splines[i] = {}
+  splines[i].a = p[i].y
+}
+
+//fill h
+for(var i=0; i < p.length-1;i++){
+  splines[i].h = p[i+1].x - p[i].x
+}
+
+//fill matrix A and B ??
+var mA = []
+var mB = []
+for(var i=1; i < p.length - 1; i++) {
+  var eq = []
+  if(i == 1) {
+    eq.push(2 * (splines[i-1].h + splines[i].h))
+    eq.push(splines[i].h)
+  } else if(i == p.length - 2){
+    eq.push(splines[i-1].h)
+    eq.push(2 * (splines[i-1].h + splines[i].h))
+  } else {
+    eq.push[splines[i-1].h]
+    eq.push(2 * (splines[i-1].h + splines[i].h))
+    eq.push(splines[i].h)
+  }
+  mA.push(eq)
+  mB.push([3 * ((p[i+1].y - p[i].y)/splines[i].h - (p[i].y - p[i-1].y)/splines[i-1].h)])
+}
+console.log("mA:" + mA)
+console.log("mB:" + mB)
+
+//fill c
+var c = solveTridiagonal(mA, mB);
+splines[0].c = 0
+console.log(c)
+for(var i=0; i < c.length; i++){
+  splines[i+1].c = c[i]
+}
+splines.push({c: 0})
+
+//fill d
+for(var i=0; i<p.length-1; i++){
+  console.log(i)
+  splines[i].d = (splines[i+1].c - splines[i].c) / 3 * splines[i].h 
+}
+
+//fill b
+for(var i=0; i<p.length-1; i++){
+  splines[i].b = (p[i+1].y - p[i].y) / splines[i].h - splines[i].h/3 * (splines[i+1].c + 2*splines[i].c)  
+}
+
+function defineSIndex(x){
+  for(var i=1; i < p.length; i++){
+    if(x < p[i].x) return i-1
+  }
+  return i-1;
+}
+
+function interpolate(x){
+  var sI = defineSIndex(x)
+  var delta = x - p[sI].x
+  return (splines[sI].a
+         + splines[sI].b * (delta) 
+         + (splines[sI].c * (Math.pow(delta, 2)))
+         + (splines[sI].d * (Math.pow(delta, 3)))); 
+}
+
+
+for(var i=2; i <= 3; i+=0.1) {
+  console.log("i: " + i + " = " + interpolate(i))
+}
+
+splines.pop()
+console.log(splines)
+\end{lstlisting}
+\end{document}

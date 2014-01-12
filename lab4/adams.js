@@ -18,22 +18,21 @@ var a = 0, b = 30
 var y = [1]
 
 function adams(h, a, b, f, y){
-	y = euler(h,a,b,f,y)
-	var ay = [y[0]]
+	var eulerVal = euler(h,a,b,f,y)
+	console.log(y)
 	var k = 0
 	for(var i=a; i<b; i+=h){
-		var prevY = y[k]
-		var prevY1 = (k-1 >= 0)? y[k-1] : 0
-		var prevY2 = (k-2 >= 0)? y[k-2] : 0
-		var prevY3 = (k-3 >= 0)? y[k-3] : 0
-		
-		ay.push(prevY + h/24*( 55*f(prevY) - 59*f(prevY1) + 37*f(prevY2) -9*(prevY3)))
+		var prevY = eulerVal[k]
+		var prevY1 = (k-1 >= 0)? eulerVal[k-1] : 0
+		var prevY2 = (k-2 >= 0)? eulerVal[k-2] : 0
+		var prevY3 = (k-3 >= 0)? eulerVal[k-3] : 0
+		y.push(prevY + h/24*( 55*f(prevY) - 59*f(prevY1) + 37*f(prevY2) -9*(prevY3)))
 		k++
 	}
-	return ay
+	return y
 }
 
-//y = adams(h, a, b, f, y)
+y = adams(h, a, b, f, y)
 //for(var i=0; i < y.length-1; i++) {
 //	console.log(y[i])
 //}
