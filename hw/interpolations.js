@@ -2,6 +2,12 @@
 //x|-1|17|6|10
 //y| 1|11|8|-2
 
+var p = {
+  '-1': 1,
+  17: 11,
+   6: 8,
+  10: -2
+}
 function lagrangePolynom(x) {
 	return (55 * Math.pow(x, 3) - 1266 * Math.pow(x, 2) + 6011*x + 8718)/1386
 }
@@ -22,6 +28,7 @@ function mnk4(x) {
 	return 5.298582534229462 + 3.6681908369409446 * x - 0.6227858291176097 * Math.pow(x, 2) + 0.008577888519749872 * Math.pow(x, 3) + 0.0009720203488372093 * Math.pow(x, 4) 
 }
 
-for(var i=0; i < 5; i+=0.1) {
-	console.log('mnk4: ' +  mnk4(i) + '  n: ' + neutonPolynom(i) + '  l: ' + lagrangePolynom(i))
+console.log(['x', 'origin','mnk2', 'mnk3', 'mnk4', 'neutonP', 'lagrangeP'].join('\t'))
+for(var i=-1; i < 17; i+=0.1) {
+	console.log([i, p[Math.round(i*100)/100] || '*', mnk2(i), mnk3(i), mnk4(i), neutonPolynom(i), lagrangePolynom(i)].join('\t'))
 }
