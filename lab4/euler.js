@@ -4,7 +4,7 @@ function f(x) {
 }
 
 //шаг
-var h = 0.1
+var h = 0.05
 
 //интервал
 var a = 0, b = 30
@@ -20,8 +20,4 @@ function euler(h, a, b, f, y){
 	return y
 }
 
-//y = euler(h, a, b, f, y)
-//for(var i=0; i<y.length-1; i++) {
-//	console.log(y[i])
-//}
 module.exports = euler

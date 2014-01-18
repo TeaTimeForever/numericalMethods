@@ -9,7 +9,7 @@ function df(x) {
 }
 
 //шаг
-var h = 0.1
+var h = 0.05
 
 //интервал
 var a = 0, b = 30
@@ -19,21 +19,19 @@ var y = [1]
 
 function adams(h, a, b, f, y){
 	var eulerVal = euler(h,a,b,f,y)
-	console.log(y)
 	var k = 0
-	for(var i=a; i<b; i+=h){
-		var prevY = eulerVal[k]
-		var prevY1 = (k-1 >= 0)? eulerVal[k-1] : 0
-		var prevY2 = (k-2 >= 0)? eulerVal[k-2] : 0
-		var prevY3 = (k-3 >= 0)? eulerVal[k-3] : 0
+	y.push(eulerVal[++k])
+	y.push(eulerVal[++k])
+	y.push(eulerVal[++k])
+	for(var i=a+(3*h); i<b; i+=h) {
+		var prevY = y[k]
+		var prevY1 = y[k-1]
+		var prevY2 = y[k-2]
+		var prevY3 = y[k-3]
 		y.push(prevY + h/24*( 55*f(prevY) - 59*f(prevY1) + 37*f(prevY2) -9*(prevY3)))
 		k++
 	}
 	return y
 }
 
-y = adams(h, a, b, f, y)
-//for(var i=0; i < y.length-1; i++) {
-//	console.log(y[i])
-//}
 module.exports = adams
