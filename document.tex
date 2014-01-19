@@ -39,7 +39,7 @@
   N_{s} = 16
 \end{displaymath}
 \section{Метод исключения Гаусса}
-\subsection{Подготовка: расчет уравнений для индивидуального задания}
+
 \begin{displaymath}
 \left(
   \begin{array}{ccc}
@@ -167,7 +167,6 @@ $0 + 6*\frac{80}{391} + 16 *\frac{-30}{391}
 
 \section{Методы приближения функции. Интерполяция и аппроксимация}
 
-\subsection{Подготовка: расчет узлов}
 \begin{table}[!h]
   \begin{tabular}{|l|l|l|l|l|}
   \hline
@@ -464,10 +463,10 @@ $y_{2} = \frac{0.89856850105}{sin^2(3 \cdot 0.89856850105)} = 4.831432657 $\\
 Зная, что результатом метода квадратуры Гаусса является $\sum A_{i} \cdot
 y_{i}$, можем посчитать значение интегрирования: \\
 
-$S = (0.62395456529 \cdot 0.555555556) 
+$S = ((0.62395456529 \cdot 0.555555556) 
    + (0.553465 \cdot 0.888888889) 
-   + (4.831432657 \cdot 0.555555556)
-   = 3.52273957043
+   + (4.831432657 \cdot 0.555555556)) * 0.45
+   = 1.585232
 $
 
 \subsubsection{Вычисление интеграла с переменным верхним пределом по методу
@@ -509,7 +508,7 @@ $h$ (для вычисления значений интеграла на каж
 \end{enumerate}
 
 \subsubsection{Анализ результатов}
-
+%TODO
 \subsection{Дифференцирование}
 \subsubsection{Метод центральных разностей}
 Зная что $ f'(x) = 
@@ -546,10 +545,10 @@ $
 \end{table}
 
 \begin{figure}[h!]
-    \includegraphics[width=13cm]{result_of_integ_diff.png}
-    \caption{Результат вычислений f(x), f'(x) и F(x)}
-    \label{interpolations_img}
-  \end{figure}
+  \includegraphics[width=13cm]{result_of_integ_diff.png}
+  \caption{Результат вычислений f(x), f'(x) и F(x)}
+  \label{interpolations_img}
+\end{figure}
 
 \section{Решение нелинейного уравнения}
 
@@ -738,12 +737,60 @@ $x_{0}=0.55$.
 начальный интервал так, чтобы начальный $x_0$ был из бассейна Ньютона, который
 указывает на корень в необходимом интервале.
 
-Будем искать корень на интервале $[0.5, 1]$.
+Будем искать корень на интервале $[0.5, 1]$.\\
+$x_{0}=0.75$.
+
+\begin{enumerate}[label= итерация \arabic{*}:]
+\item
+\begin{math}
+  x_{0} = 0.7500\\
+  x_{1} = 0.7500 - \frac{-15.7611}{7.6529} = 2.8095\\
+  |2.8095 -0.7500| > \varepsilon\\
+\end{math}
+
+\item
+\begin{math}
+  x_{1} = 2.8095\\
+  x_{2} = 2.8095 - \frac{-13.0131}{16.9045} = 3.5793\\
+  |3.5793 -2.8095| > \varepsilon\\
+\end{math}
+
+\item
+\begin{math}
+  x_{2} = 3.5793\\
+  x_{3} = 3.5793 - \frac{-13.1721}{-4.9833} = 0.9360\\
+  |0.9360 -3.5793| > \varepsilon\\
+\end{math}
+
+\item
+\begin{math}
+  x_{3} = 0.9360\\
+  x_{4} = 0.9360 - \frac{-8.2663}{160.5773} = 0.9875\\
+  |0.9875 -0.9360| > \varepsilon\\
+\end{math}
+
+\item
+\begin{math}
+  x_{4} = 0.9875\\
+  x_{5} = 0.9875 - \frac{14.1212}{1063.0069} = 0.9742\\
+  |0.9742 -0.9875| > \varepsilon\\
+\end{math}
+
+\item
+\begin{math}
+  x_{5} = 0.9742\\
+  x_{6} = 0.9742 - \frac{3.6517}{578.0826} = 0.9679\\
+  |0.9679 -0.9742| > \varepsilon\\
+\end{math}
+\end{enumerate}
 
 \subsubsection{Метод Ньютона: пояснение результата}
   Метод Ньютона, при начальном $x_{0} = 0.55$ не сходится (см.
-  Рис.\ref{equ_newton_img}).
-  \begin{figure}[b]
+  Рис.\ref{equ_newton_img}), поскольку касательная к графику функции при
+  $x = 0.55$, `отправляет` значение следующего $x$ далеко от начального
+  интервала.
+   
+  \begin{figure}[h!]
     \includegraphics[width=13cm]{equations_newton.png}
     \caption{Первые шаги поиска корня методом Ньютона для функции $x/sin^2(3x)
     - 17$}
@@ -751,12 +798,154 @@ $x_{0}=0.55$.
   \end{figure}
 
 \subsection{Метод простых итераций}
+Для метода простых итераций 
 
 \section{Решение линейного дифференциального уравнения 2-го порядка}
-$y''(t) + 5\cdot y'(t) + N_s \cdot y(t) = N_g$ \\
-$y(0) = 5, y'(0) =10$
+Общее задание вида $y''(t) + 5\cdot y'(t) + N_s \cdot y(t) = N_g$ принимает вид
+$y''(t) + 5\cdot y'(t) + 16 \cdot y(t) = 17$, а начальные ограничения 
+$y(0) = 5, y'(0) =10$. \\
+Рассчитаем шаг $h$: \\
+\begin{enumerate}
+  \item Решим характерестическое уравнение $a^2 + 5a + 16 = 17$:\\
+  привидем уравнение к однородному виду $a^2 + 5a -1 =0$;\\
+  вычислим дискриминант $D = b^2-4ac = 25 -4*1*(-1) = 29$;\\
+  найдем корни: 
+  \begin{itemize}
+    \item $x_1 = \frac{-b + \sqrt{D}}{2a} = \frac{-5 + \sqrt{29}}{2} = 0.19$
+    \item $x_2 = \frac{-b - \sqrt{D}}{2a} = \frac{-5 - \sqrt{29}}{2} = -5.19$
+  \end{itemize}
+  
+  \item $min: \{|0.19|, |-5.19| \} = 0.19$
+  
+  \item $\tau = 1/0.19 = 5.263$
+   
+  \item $T = \frac{3}{4} \cdot \tau = \frac{3}{4} \cdot 5.263 = 3.95$
+  
+  \item $h = \frac{T}{20} = \frac{3.95}{20} = 0.1975$
+  
+\end{enumerate}
+
+Привидем задачу к виду задачи Коши:
+\begin{math}
+\left\{ 
+\begin{array}{cc}
+  y' = z,             & y(0) = 5 \\ 
+  z' = 17 - 5z - 16y, & y'(0) = 10
+\end{array}
+\right\}
+\end{math}
 
 \subsection{Метод Рунге-Кутта 4-ого порядка}
+\begin{math}
+  y_{i+1} = y_i + \frac{h}{6} (k_0 + 2k_1 + 2k_2 + k_3)\\
+  z_{i+1} = z_i + \frac{h}{6} (l_0 + 2l_1 + 2l_2 + l_3)
+\end{math} 
+\\
+\begin{math}
+\begin{array}{rl}
+  k_0 = z_i,                  & l_0 = 17 - 5z_i - 16y_i \\ 
+  k_1 = z_i + \frac{hl_0}{2}, & l_1 = 17 - 5\frac{z_i + hl_0}{2} - 16\frac{y_i +  hk_0}{2} \\
+  k_2 = z_i + \frac{hl_1}{2}, & l_2 = 17 - 5\frac{z_i + hl_1}{2} - 16\frac{y_i +  hk_1}{2} \\
+  k_3 = z_i + hl_2,           & l_3 = 17 - 5(z_i + hl_2) - 16(y_i + hk_2)\\
+\end{array}
+\end{math} \\
+Поскольку, для поиска графика функции необходимо сделать 20 итераций в каждой из
+которых по 10 вычислений, то отобразим лишь вычисления для первой итерации.
+\begin{itemize}
+  \item $k_0 = z_i = 10$
+  \item $l_0 = 17 - 5z_i - 16y_i  
+  = 17 - 5 \cdot 10 - 16 \cdot 5 
+  = -113$
+  \item $k_1 = z_i + \frac{hl_0}{2} 
+  = 10 + \frac{0.1975 \cdot (-113)}{2}
+  =-1.15875$
+  \item $l_1 = 17 - 5\frac{z_i + hl_0}{2} - 16\frac{y_i +  hk_0}{2}
+  = 17 - 5\frac{10 + 0.1975\cdot (-113)}{2} - 16\frac{5 +  0.1975\cdot 10}{2} 
+  = -48.00625$
+  \item $k_2 = z_i + \frac{hl_1}{2} 
+  = 10 + \frac{0.1975 \cdot (-48.00625)}{2} 
+  = 5.2593828125$
+  \item $l_2 = 17 - 5\frac{z_i + hl_1}{2} - 16\frac{y_i +  hk_1}{2} 
+  = 17 - 5\frac{10 + 0.1975 \cdot (-48.00625)}{2} - 16\frac{5 +  0.1975 \cdot(-1.15875)}{2} 
+  = -62.4660890625$
+  \item $k_3 = z_i + hl_2 
+  = 10 + 0.1975 \cdot (-62.4660890625) 
+  = -2.3370$
+  \item $l_3 = 17 - 5(z_i + hl_2) - 16(y_i + hk_2) 
+  = 17 - 5(10 + 0.1975 \cdot (-62.4660890625)) - 16(5 + 0.1975 \cdot 5.2593828125) 
+  = -67.93438$
+  
+  \item $y_{i+1} = y_i + \frac{h}{6} (k_0 + 2k_1 + 2k_2 + k_3)
+  = 5 + \frac{ 0.1975}{6} (10 + 2\cdot (-1.15875) + 2\cdot (5.2593828125)  +(-2.3370)) 
+  = 5.52219$
+\end{itemize}
 
+Далее для вычислений была использована программа реализующая метод Рунге-Кутта
+(код см. в \ref{rungekuttaalg}).
+
+\begin{figure}[h!]
+  \includegraphics[width=13cm]{rungekutt.png}
+  \caption{Результат вычислений произведенных методом Рунге-Кутта}
+\end{figure}
+
+\subsubsection{Програмный код для метода Рунге-Кутта}\label{rungekuttaalg}
+\begin{lstlisting}
+var h = 0.1975
+
+function countParams(cur) {
+  kls = {}
+  kls.k0 = cur.z
+  kls.l0 = 17 - 5*cur.z - 16 *cur.y
+  kls.l1 = 17 - 5*((cur.z + h* kls.l0)/2) - 16 *(cur.y + (h*kls.k0)/2)
+  kls.k1 = cur.z + (h*kls.l0)/2
+
+  kls.l2 = 17 - 5*((cur.z + h* kls.l1)/2) - 16 *(cur.y + (h*kls.k1)/2)
+  kls.k2 = cur.z + (h*kls.l1)/2
+
+  kls.l3 = 17 - 5*((cur.z + h* kls.l2)) - 16 *(cur.y + (h*kls.k2))
+  kls.k3 = cur.z + (h*kls.l2)
+  return kls
+} 
+
+function nextCurZY(cur, h, kls){
+  var nextCur = {
+      y: cur.y + h/6*(kls.k0 + 2* kls.k1 + 2*kls.k2 + kls.k3),
+      z: cur.z + h/6*(kls.l0 + 2* kls.l1 + 2*kls.l2 + kls.l3)
+  }
+  return nextCur
+}
+
+var cur = {
+  y: 5,
+  z: 10
+}
+
+for(var i=0; i < 3.95; i+=h) {
+  var kls = countParams(cur)
+  cur = nextCurZY(cur, h, kls)
+}
+\end{lstlisting}
+
+\section{MATLAB}
+\subsection{Решение ОДУ}
+Задание:
+\begin{math}
+\left\{ 
+\begin{array}{l}
+  x' = x \cdot y - a_1 \cdot x, \\
+  y' = b_1 \cdot x \cdot y - b_2  \cdot y^2 - b_3  \cdot y - b_4 \cdot (x-z),\\ 
+  z' = c_1 -c_2  \cdot x.\\
+\end{array}
+\right\}
+\end{math}\\
+при $a_1 = 0.21, b_1=0.15, b_2 = 0.06, b_3 = 0.08, b_4 = 0.1, c_1 = 0.01,
+c2=0.03$, и начальных условиях $x(0) = 1, y(0) = 0.1, z(0) = 0.75$.
+
+Необходимо отобразить: 
+\begin{itemize}
+  \item x(t) - валовой продукт;
+  \item y(t) - темп роста валового продукта;
+  \item z(t) - платежеспособный спрос.
+\end{itemize}
 
 \end{document}

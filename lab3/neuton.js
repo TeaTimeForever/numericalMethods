@@ -1,17 +1,22 @@
-function neuton(firstx, a, b, e) {
+function neuton( a, b, e) {
 	var i = 0;
 	var x = (a+b)/2
-	//var x = firstx
 	var xNew
 	var a = 1
 	do {
+		
+		console.log('')
+		console.log('\\item')
+		console.log('\\begin{math}')
+		console.log('\tx_{' + i + '} = ' + x.toFixed(4) + '\\\\')
 		xNew = ( x - a* (f(x) / fD(x)));
 		i++;
+		console.log('\tx_{' + i + '} = x_{' + (i-1) + '} - \\frac{' + f(x).toFixed(4) + '}{'+fD(x).toFixed(4) +'} = '+ xNew.toFixed(4) + '\\\\')
+		console.log('\t|' + xNew.toFixed(4) + ' -' + x.toFixed(4) + '| > \\varepsilon\\\\' )
+		console.log('\\end{math}' )
 		var delta = Math.abs(x - xNew)
 		x = xNew
 	} while(delta > e);
-	if(xNew < 1 && xNew > 0)
-		console.log('f: ' + firstx + ' -> ' + xNew)
 	return xNew;
 }
 
@@ -26,11 +31,7 @@ var a = 0.1;
 var b = 1;
 var e = 0.0001
 
-
-console.log(f(0.4)/fD(0.4))
-//for(var i=a; i< b; i+=0.001){
-//	neuton(0.75, a, 0.699, e);
-//}
+neuton( a, b, e);
 
 //ab(0.001, a, b)
 function ab (step, a, b){
@@ -39,7 +40,3 @@ function ab (step, a, b){
 		b-=step
 	}
 }
-
-//first - 0.75
-// f: 0.215
-// f: 0.40000000000000024
