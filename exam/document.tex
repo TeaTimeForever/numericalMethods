@@ -380,6 +380,40 @@ $L_2 = a_0+a_1x+ a_2x^2 = 0 -> x_{1,2}$ - выбираем тот, что из �
  Иногда применяют Ньютона с коррекцикей:
  3) $x_{k+1} = x_k - \alpha \ frac{f(x)}{f'(x)}, if(|f(x_{k+1})| \geq
  |f(x_{k})| ? \alpha = \alpha /2 $;
+ 
+\section{М-ды решения систем нелин. у-й. М-д Ньютона,Простых итераций}
+Ньютон
+\begin{math}
+\left\{
+\begin{array}{l}
+  f_1(x_1 \ldots x_n) = 0 \\
+  \vdots \\
+  f_n(x_1 \ldots x_n) = 0
+\end{array}
+\end{math}\\
+$X_{k+1} = X_k - W^{-1} (X_k) * F(X_k)$ где W(x) - матрица якоби\\
 
+W(X) = 
+\begin{bmatrix} 
+  $\delta f_1 / \delta k_1$ & \cdots & $\delta f_1 / \delta k_n$ \\
+  \vdots & \ddots & \vdots \\ 
+  $\delta f_n / \delta k_1$ & \cdots & $\delta f_n / \delta k_n$ 
+\end{bmatrix}\\
 
+Пр.Ит.
+\begin{math}
+\begin{array}{l}
+  x_1 + \\
+  \ldots \\
+  x_n + \\
+\end{array}
+\left\{
+\begin{array}{l}
+  f_1(x_1 \ldots x_n) = 0 + x_1\\
+  \vdots \\
+  f_n(x_1 \ldots x_n) = 0 + x_n
+\end{array}
+\end{math}\\
+
+$X_{k+1} = \Phi(X_k)$
 \end{document}
