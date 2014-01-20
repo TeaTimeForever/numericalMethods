@@ -35,7 +35,7 @@ for(var i=0; i < p.length-1;i++){
 	splines[i].h = p[i+1].x - p[i].x
 }
 
-//fill matrix A and B ??
+//fill matrix A and B 
 var mA = []
 var mB = []
 for(var i=1; i<p.length-1; i++) {
@@ -106,9 +106,7 @@ function interpolate(x){
 }
 
 for(var i=-3.2; i <= 2.7; i+=0.1) {
-//	interpolate(i)
 	console.log(interpolate(i))
-//	console.log(i)
 }
 //
 //splines.pop()
