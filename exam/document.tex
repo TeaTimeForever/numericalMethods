@@ -471,4 +471,27 @@ $y(t) = y(0) + y'(0)t + \frac{y''(0)t^2}{2!} + \frac{y'''(0)t^3}{3!} \ldots$
 \end{array}
 \end{math}\\  
 
+\section{Рунгге-Кутта}
+\begin{math}
+\left\{ 
+\begin{array}{cc}
+  y' = z,             & y(0) = 5 \\ 
+  z' = 17 - 5z - 16y, & y'(0) = 10
+\end{array}
+\right\}
+\end{math}\\
+\begin{math}
+  y_{i+1} = y_i + \frac{h}{6} (k_0 + 2k_1 + 2k_2 + k_3)\\
+  z_{i+1} = z_i + \frac{h}{6} (l_0 + 2l_1 + 2l_2 + l_3)
+\end{math} 
+\\
+\begin{math}
+\begin{array}{rl}
+  k_0 = z_i,                  & l_0 = 17 - 5z_i - 16y_i \\ 
+  k_1 = z_i + \frac{hl_0}{2}, & l_1 = 17 - 5\frac{z_i + hl_0}{2} - 16\frac{y_i +  hk_0}{2} \\
+  k_2 = z_i + \frac{hl_1}{2}, & l_2 = 17 - 5\frac{z_i + hl_1}{2} - 16\frac{y_i +  hk_1}{2} \\
+  k_3 = z_i + hl_2,           & l_3 = 17 - 5(z_i + hl_2) - 16(y_i + hk_2)\\
+\end{array}
+\end{math} \\
+
 \end{document}
