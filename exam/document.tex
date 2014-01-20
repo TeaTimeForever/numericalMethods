@@ -443,7 +443,32 @@ $G= (\frac{\delta F}{\delta x_1}, \frac{\delta F}{\delta x_2})$ Идея в то
   сравниваются друг с другом);
   \item Мутация - внесение резкого случ. изменения в одну особь.
   \item Если > 85\% популяции одинакого - стоп, иначе шаг 2.
-   
-  
-\end{enumerate} 
+\end{enumerate}
+
+\section{Полуаналитич. м-ды реш. ДУ. Пикар. Последоват. диф-е}
+Пикар \\
+\begin{math}
+\begin{array}{ll}
+  y' = f(t,y), y(0) = y_0 & $интегрируем с 2х сторон \int\limits_{0}^t $\\
+  \int\limits_{0}^t y' = \int\limits_{0}^t f(t,y)dt &\\
+  y(t)- y(0) = \int\limits_{0}^t f(t,y)dt  & подствляем y_0\\
+  y(t) = (\int\limits_{0}^t f(t,y_0)) + y_0 \\
+\end{array}
+\end{math}\\
+
+Послед. диф. \\
+$y(t) = y(0) + y'(0)t + \frac{y''(0)t^2}{2!} + \frac{y'''(0)t^3}{3!} \ldots$
+известно y(0).
+Пример\\
+\begin{math}
+\begin{array}{l}
+  y' = -3y + 2t^2 $t не влияет$ \\
+  y'(0) = -3 * 2 + 0 = -6 \\
+  y'' = -3y' + 4t \\
+  y''(0) = -3 * 6 + 0 = -18 \\
+  y'''(-3y'' + 4)  = 50 
+  y(t) = 2 - 6t + \frac{18}{2!}t^2 - \frac{50}{3!}t^3
+\end{array}
+\end{math}\\  
+
 \end{document}
